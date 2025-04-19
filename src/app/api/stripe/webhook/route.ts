@@ -1,8 +1,8 @@
-import { env } from '@/app/lib/env'
-import { stripe } from '@/app/lib/stripe'
-import { handleStripeCancelSubscription } from '@/app/server/stripe/handle-cancel-subscription'
-import { handleStripePayment } from '@/app/server/stripe/handle-payment'
-import { handleStripeSubscription } from '@/app/server/stripe/handle-subscription'
+import { env } from '@/lib/env'
+import { stripe } from '@/lib/stripe'
+import { handleStripeCancelSubscription } from '@/server/stripe/handle-cancel-subscription'
+import { handleStripePayment } from '@/server/stripe/handle-payment'
+import { handleStripeSubscription } from '@/server/stripe/handle-subscription'
 import { headers } from 'next/headers'
 
 export async function POST(request: Request) {

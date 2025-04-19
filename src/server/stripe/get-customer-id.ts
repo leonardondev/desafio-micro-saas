@@ -1,7 +1,7 @@
 import 'server-only'
 
-import { db } from '@/app/lib/firebase'
-import { stripe } from '@/app/lib/stripe'
+import { db } from '@/lib/firebase'
+import { stripe } from '@/lib/stripe'
 
 type data = {
   userId: string

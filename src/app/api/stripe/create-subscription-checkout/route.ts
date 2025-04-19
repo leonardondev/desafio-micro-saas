@@ -1,7 +1,7 @@
-import { auth } from '@/app/lib/auth'
-import { env } from '@/app/lib/env'
-import { stripe } from '@/app/lib/stripe'
-import { getOrCreateCustomer } from '@/app/server/stripe/get-customer-id'
+import { auth } from '@/lib/auth'
+import { env } from '@/lib/env'
+import { stripe } from '@/lib/stripe'
+import { getOrCreateCustomer } from '@/server/stripe/get-customer-id'
 
 export async function POST(request: Request) {
   const { planId } = await request.json()

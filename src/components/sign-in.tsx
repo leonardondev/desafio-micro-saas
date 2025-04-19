@@ -1,4 +1,4 @@
-import { handleAuth } from '@/app/actions/handle-auth'
+import { handleAuth } from '@/actions/handle-auth'
 import Image from 'next/image'
 
 export function SignInButton() {

@@ -1,9 +1,9 @@
 import 'server-only'
 
-import { db } from '@/app/lib/firebase'
+import { db } from '@/lib/firebase'
 import type Stripe from 'stripe'
 
-export async function handleStripePayment(
+export async function handleStripeSubscription(
   event: Stripe.CheckoutSessionCompletedEvent
 ) {
   if (event.data.object.payment_status === 'paid') {

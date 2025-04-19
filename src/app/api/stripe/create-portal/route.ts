@@ -1,6 +1,6 @@
-import { auth } from '@/app/lib/auth'
-import { db } from '@/app/lib/firebase'
-import { stripe } from '@/app/lib/stripe'
+import { auth } from '@/lib/auth'
+import { db } from '@/lib/firebase'
+import { stripe } from '@/lib/stripe'
 
 export async function POST(request: Request) {
   const session = await auth()

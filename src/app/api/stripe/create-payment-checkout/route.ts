@@ -1,5 +1,5 @@
-import { env } from '@/app/lib/env'
-import { stripe } from '@/app/lib/stripe'
+import { env } from '@/lib/env'
+import { stripe } from '@/lib/stripe'
 
 export async function POST(request: Request) {
   const { planId, userEmail } = await request.json()

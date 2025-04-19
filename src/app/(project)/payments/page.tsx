@@ -1,6 +1,6 @@
 'use client'
 
-import { useStripe } from '@/app/hooks/useStripe'
+import { useStripe } from '@/hooks/useStripe'
 
 export default function Payments() {
   const {

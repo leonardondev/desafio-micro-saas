@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { handleAuth } from '@/app/actions/handle-auth'
-import { auth } from '@/app/lib/auth'
+import { handleAuth } from '@/actions/handle-auth'
+import { auth } from '@/lib/auth'
 
 export default async function Dashboard() {
   const session = await auth()
