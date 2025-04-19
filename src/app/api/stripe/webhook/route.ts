@@ -3,6 +3,7 @@ import { stripe } from '@/lib/stripe'
 import { handleStripeCancelSubscription } from '@/server/stripe/handle-cancel-subscription'
 import { handleStripePayment } from '@/server/stripe/handle-payment'
 import { handleStripeSubscription } from '@/server/stripe/handle-subscription'
+import { handleStripeUpdateSubscription } from '@/server/stripe/handle-update-subscription'
 import { headers } from 'next/headers'
 
 export async function POST(request: Request) {
@@ -49,6 +50,11 @@ export async function POST(request: Request) {
       case 'customer.subscription.created': // Criou assinatura
         {
           console.log('Mensagem de boas vindas porque acabou de assinar.\n')
+        }
+        break
+      case 'customer.subscription.updated': // Modificou assinatura
+        {
+          await handleStripeUpdateSubscription(event)
         }
         break
       case 'customer.subscription.deleted': // Cancelou assinatura
