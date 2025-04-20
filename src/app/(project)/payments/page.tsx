@@ -1,53 +1,21 @@
-'use client'
+import Plans from '@/components/plans'
+import { auth } from '@/lib/auth'
+import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 
-import { useMercadoPago } from '@/hooks/useMercadoPago'
-import { useStripe } from '@/hooks/useStripe'
+export default async function Payments() {
+  const session = await auth()
 
-export default function Payments() {
-  const {
-    createStripePaymentCheckout,
-    createSubscriptionCheckout,
-    handleCreateStripePortal,
-  } = useStripe()
-  const { createMercadoPagoCheckout } = useMercadoPago()
+  // console.log({ session })
 
+  if (!session) {
+    redirect('/login')
+  }
   return (
     <div className="flex flex-1 flex-col gap-4 items-center justify-center">
       <h1 className="text-3xl font-bold">Pagamentos</h1>
 
-      <div className="flex gap-4">
-        <button
-          className="py-2 px-4 border rounded-md"
-          type="button"
-          onClick={() => createStripePaymentCheckout({ planId: 'on-off-01' })}
-        >
-          Criar pagamento Stripe
-        </button>
-        <button
-          className="py-2 px-4 border rounded-md"
-          type="button"
-          onClick={() => createSubscriptionCheckout({ planId: 'recurring-01' })}
-        >
-          Criar assinatura Stripe
-        </button>
-        <button
-          className="py-2 px-4 border rounded-md"
-          type="button"
-          onClick={() => handleCreateStripePortal()}
-        >
-          Criar portal de Pagamentos
-        </button>
-      </div>
-
-      <div className="flex gap-4">
-        <button
-          className="py-2 px-4 border rounded-md"
-          type="button"
-          onClick={() => createMercadoPagoCheckout({ planId: 'on-off-02' })}
-        >
-          Criar pagamento Mercado Pago
-        </button>
-      </div>
+      <Suspense>{session && <Plans email={session.user?.email} />}</Suspense>
     </div>
   )
 }

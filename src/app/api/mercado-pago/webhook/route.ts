@@ -28,8 +28,6 @@ export async function POST(request: Request) {
         console.info('Ignored event\n')
     }
 
-    //
-
     return Response.json({ message: 'Webhook received' }, { status: 200 })
   } catch (error) {
     console.error(error)

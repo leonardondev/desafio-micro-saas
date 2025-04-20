@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 
 type CheckoutData = {
   planId: string
-  userEmail?: string
+  userEmail?: string | null
 }
 
 export function useMercadoPago() {

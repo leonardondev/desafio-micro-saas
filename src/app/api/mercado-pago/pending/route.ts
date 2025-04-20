@@ -34,7 +34,3 @@ export async function POST(request: Request) {
     return Response.error()
   }
 }
-
-export async function GET() {
-  console.log('webhook chamou pending')
-}
