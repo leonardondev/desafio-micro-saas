@@ -1,6 +1,12 @@
 import { SignInButton } from '@/components/sign-in'
 import { auth } from '@/lib/auth'
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
+
+export const metadata: Metadata = {
+  title: 'Entrar',
+  description: 'Auth Page',
+}
 
 export default async function Login() {
   const session = await auth()

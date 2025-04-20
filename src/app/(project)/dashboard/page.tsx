@@ -1,9 +1,15 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 import { handleAuth } from '@/actions/handle-auth'
 import { auth } from '@/lib/auth'
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Dashboard',
+}
 
 export default async function Dashboard() {
   const session = await auth()

@@ -1,8 +1,14 @@
 import Plans from '@/components/plans'
 import { auth } from '@/lib/auth'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
+
+export const metadata: Metadata = {
+  title: 'Tipos de Pagamentos',
+  description: 'Payments',
+}
 
 export default async function Payments() {
   const session = await auth()
