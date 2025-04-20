@@ -26,7 +26,10 @@ export function useMercadoPago() {
         body: JSON.stringify({ planId, userEmail }),
       })
 
-      const { initPoint /*, preferenceId */ } = await response.json()
+      const {
+        initPoint,
+        // preferenceId,
+      } = await response.json()
 
       router.push(initPoint)
     } catch (error) {

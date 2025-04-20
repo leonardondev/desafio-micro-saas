@@ -1,7 +1,7 @@
 import { mpClient } from '@/lib/mercado-pago'
 import { Payment } from 'mercadopago'
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const paymentId = searchParams.get('payment_id')
   const planId = searchParams.get('external_reference')
@@ -15,17 +15,15 @@ export async function POST(request: Request) {
 
   try {
     const payment = new Payment(mpClient)
-
-    const paymentData = await payment.get({
-      id: paymentId,
-    })
+    const paymentData = await payment.get({ id: paymentId })
 
     if (
       paymentData.status === 'approved' || // Cartão
       paymentData.date_approved !== null // PIX
     ) {
-      console.log(request.url)
-      return Response.redirect(new URL('/success', request.url))
+      // sobrescreve o path mantendo origin
+      const redirectURL = new URL('/success', request.url)
+      return Response.redirect(redirectURL)
     }
 
     return Response.redirect(new URL('/', request.url))

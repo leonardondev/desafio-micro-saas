@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         break
 
       default:
-        console.info('Ignored event\n')
+        console.info(`Ignored event: ${type}\n`)
     }
 
     return Response.json({ message: 'Webhook received' }, { status: 200 })
