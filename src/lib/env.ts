@@ -21,6 +21,8 @@ export const env = createEnv({
     STRIPE_SUBSCRIPTION_PRICE_ID: z.string(),
     MP_ACCESS_TOKEN: z.string(),
     MP_WEBHOOK_SECRET: z.string(),
+    RESEND_DOMAIN: z.string(),
+    RESEND_API_KEY: z.string(),
   },
   client: {
     NEXT_PUBLIC_STRIPE_PUB_KEY: z.string(),
@@ -41,6 +43,8 @@ export const env = createEnv({
     STRIPE_SUBSCRIPTION_PRICE_ID: process.env.STRIPE_SUBSCRIPTION_PRICE_ID,
     MP_ACCESS_TOKEN: process.env.MP_ACCESS_TOKEN,
     MP_WEBHOOK_SECRET: process.env.MP_WEBHOOK_SECRET,
+    RESEND_DOMAIN: process.env.RESEND_DOMAIN,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
 
     NEXT_PUBLIC_STRIPE_PUB_KEY: process.env.NEXT_PUBLIC_STRIPE_PUB_KEY,
     NEXT_PUBLIC_MP_PUBLIC_KEY: process.env.NEXT_PUBLIC_MP_PUBLIC_KEY,

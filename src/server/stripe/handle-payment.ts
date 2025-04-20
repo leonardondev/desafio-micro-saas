@@ -1,6 +1,8 @@
 import 'server-only'
 
+import { env } from '@/lib/env'
 import { db } from '@/lib/firebase'
+import { resend } from '@/lib/resend'
 import type Stripe from 'stripe'
 
 export async function handleStripePayment(
@@ -10,9 +12,12 @@ export async function handleStripePayment(
     console.log('Enviar e-mail e liberar acesso.\n')
 
     const userId = event.data.object.metadata?.userId
+    const userEmail =
+      event.data.object.customer_email ||
+      event.data.object.customer_details?.email
 
-    if (!userId) {
-      console.log('user ID not found.')
+    if (!userId || !userEmail) {
+      console.log('user ID or e-mail not found.')
       return
     }
 
@@ -20,5 +25,18 @@ export async function handleStripePayment(
       stripeSubscriptionId: event.data.object.subscription,
       subscriptionStatus: 'active',
     })
+
+    const { data, error } = await resend.emails.send({
+      from: `Leonardo do Nascimento <me@${env.RESEND_DOMAIN}`,
+      to: [userEmail],
+      subject: 'Pagamento SaaS',
+      text: 'Pagamento realizado com sucesso',
+    })
+
+    if (error) {
+      console.error(error)
+    }
+
+    console.log(data)
   }
 }
